@@ -29,13 +29,11 @@ jobs:
         with:
           terraform_version: 1.5.7
 
-      - name: Clean Terraform cache
+      - name: Terraform Init (fresh + upgrade)
         run: |
           rm -rf .terraform
           rm -f .terraform.lock.hcl
-
-      - name: Terraform Init (fresh + upgrade)
-        run: terraform init -upgrade -reconfigure
+          terraform init -upgrade -reconfigure
 
       - name: Terraform Validate
         run: terraform validate
