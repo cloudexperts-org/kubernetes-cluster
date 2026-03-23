@@ -1,9 +1,9 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = ">= 19.1.0"
+  version = "19.21.0"   # pin exact version (important!)
 
-  name    = var.cluster_name   # updated from cluster_name
-  cluster_version = "1.29"     # updated from cluster_version
+  cluster_name    = var.cluster_name
+  cluster_version = "1.29"
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
@@ -17,5 +17,5 @@ module "eks" {
     }
   }
 
-  enable_irsa = true  # required for service accounts
+  enable_irsa = true
 }
