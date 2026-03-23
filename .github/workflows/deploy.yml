@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'terraform/**'
-
   workflow_dispatch:
 
 jobs:
@@ -34,7 +33,7 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -reconfigure
 
       - name: Terraform Validate
         run: terraform validate
