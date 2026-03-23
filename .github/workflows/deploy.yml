@@ -38,7 +38,7 @@ jobs:
           rm -f .terraform.lock.hcl
 
       - name: Terraform Init
-        run: terraform init -upgrade
+        run: terraform init -upgrade -backend-config="region=ap-southeast-1" -backend-config="bucket=cloudex-terraform-state-bucket" -backend-config="key=eks/terraform.tfstate" -backend-config="dynamodb_table="
 
       - name: Check provider versions
         run: terraform providers
