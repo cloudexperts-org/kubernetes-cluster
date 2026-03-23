@@ -1,4 +1,3 @@
-# EKS module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.3.0"
@@ -6,9 +5,9 @@ module "eks" {
   cluster_version = "1.35"
   manage_aws_auth = true
 
-  aws_auth_roles = [
+  aws_auth_users = [
     {
-      rolearn  = "arn:aws:iam::865809098262:user/akash"
+      userarn  = "arn:aws:iam::865809098262:user/akash"
       username = "github-actions"
       groups   = ["system:masters"]
     }

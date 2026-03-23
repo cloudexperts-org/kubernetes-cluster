@@ -29,7 +29,6 @@ data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_name
 }
 
-# Kubernetes provider (for Helm charts)
 provider "kubernetes" {
   host = data.aws_eks_cluster.cluster.endpoint
 
