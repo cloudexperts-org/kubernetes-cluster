@@ -36,7 +36,10 @@ jobs:
         run: terraform -v
 
       - name: Terraform Init
-        run: terraform init -reconfigure
+        run: terraform init -upgrade
+
+      - name: Check provider versions
+        run: terraform providers
 
       - name: Terraform Validate
         run: terraform validate
