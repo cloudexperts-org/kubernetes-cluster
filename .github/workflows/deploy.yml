@@ -32,7 +32,7 @@ jobs:
         with:
           terraform_version: 1.5.7
 
-      - name: Clean Terraform cache
+      - name: Clean Terraform cache 1
         run: |
           rm -rf .terraform
           rm -f .terraform.lock.hcl
