@@ -25,8 +25,8 @@ module "eks" {
 
 # Add AWS Auth separately
 module "aws_auth" {
-  source          = "terraform-aws-modules/eks/aws//modules/aws-auth"
-  cluster_name    = module.eks.cluster_name
+  source           = "terraform-aws-modules/eks/aws//modules/aws-auth"
+  cluster_name     = module.eks.cluster_name
   cluster_endpoint = module.eks.cluster_endpoint
 
   map_users = [
