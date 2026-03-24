@@ -34,6 +34,3 @@ variable "instance_type" {
   type    = string
   default = "t3.medium"
 }
-
-
-variable "eks_managed_node_groups" {}
