@@ -26,12 +26,12 @@ module "eks" {
 
   enable_irsa = true
 
-  manage_aws_auth = true
-  aws_auth_users = [
+  # NEW way to add GitHub Actions IAM user
+  map_users = [
     {
-      userarn  = "arn:aws:iam::123456789012:user/akash"
-      username = "akash"
-      groups   = ["system:masters"]
+      user_arn  = "arn:aws:iam::865809098262:user/akash"
+      username  = "akash"
+      groups    = ["system:masters"]
     }
   ]
 
