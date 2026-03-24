@@ -1,3 +1,14 @@
+terraform {
+  required_version = ">= 1.5.7"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 5.0"
+    }
+  }
+}
+
 provider "aws" {
   region = "ap-southeast-1"
 }
@@ -20,14 +31,4 @@ provider "kubernetes" {
   )
 
   token = data.aws_eks_cluster_auth.cluster.token
-}
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 5.0"
-    }
-  }
-  required_version = ">= 1.5"
 }
