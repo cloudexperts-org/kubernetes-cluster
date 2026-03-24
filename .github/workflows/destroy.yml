@@ -6,7 +6,7 @@ on:
 jobs:
   terraform-destroy:
     name: Terraform Destroy
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     defaults:
       run:
