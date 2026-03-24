@@ -3,16 +3,13 @@ module "eks" {
   version = "20.3.0"
 
   cluster_name    = var.cluster_name
-  cluster_version = "1.35"
+  cluster_version = "1.27"
 
-  vpc_id = module.vpc.vpc_id
+  # VPC info
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.public_subnet_ids
 
-  # Use vpc_config block instead of public_subnets / subnet_ids
-  vpc_config = {
-    subnet_ids = module.vpc.public_subnet_ids
-  }
-
-  # Define managed node groups
+  # Managed node groups
   eks_managed_node_groups = {
     default = {
       desired_capacity = 2
