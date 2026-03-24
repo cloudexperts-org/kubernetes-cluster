@@ -12,8 +12,4 @@ resource "helm_release" "argocd" {
   repository = "https://argoproj.github.io/argo-helm"
   namespace  = kubernetes_namespace.argocd.metadata[0].name
   create_namespace = false
-
-  values = [
-    file("${path.module}/values-argocd.yaml")  # Optional: your custom values
-  ]
 }
