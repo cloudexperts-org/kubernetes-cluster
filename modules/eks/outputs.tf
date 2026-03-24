@@ -11,5 +11,11 @@ output "eks_cluster_name" {
 }
 
 output "eks_node_group_arns" {
-  value = module.eks.node_group_arns
+  description = "ARNs of all managed node groups"
+  value       = module.eks.eks_managed_node_group_arns
+}
+
+output "eks_node_group_names" {
+  description = "Names of all managed node groups"
+  value       = module.eks.eks_managed_node_group_names
 }

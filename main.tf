@@ -5,9 +5,9 @@ module "vpc" {
 }
 
 module "iam" {
-  source       = "./modules/iam"
-  cluster_name = var.cluster_name
-  region       = "ap-southeast-1"
+  source           = "./modules/iam"
+  eks_cluster_name = module.eks.cluster_name
+  eks_cluster_arn  = module.eks.cluster_arn
 }
 
 module "eks" {
