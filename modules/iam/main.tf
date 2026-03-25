@@ -1,8 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
-
 # Access Entry for akash
 
 resource "aws_eks_access_entry" "akash" {
