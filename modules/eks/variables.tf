@@ -44,3 +44,13 @@ variable "cluster_endpoint_private_access" {
   type    = bool
   default = true
 }
+
+variable "aws_auth_roles" {
+  description = "IAM roles to add to aws-auth"
+  type = list(object({
+    rolearn  = string
+    username = string
+    groups   = list(string)
+  }))
+  default = []
+}
