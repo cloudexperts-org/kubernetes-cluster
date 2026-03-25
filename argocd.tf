@@ -7,5 +7,5 @@ resource "helm_release" "argocd" {
 
   create_namespace = true
 
-  depends_on = [module.this_eks] 
+  depends_on = [module.eks] 
 }
