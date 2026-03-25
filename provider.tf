@@ -22,11 +22,11 @@ provider "aws" {
 }
 
 data "aws_eks_cluster" "this" {
-  name = module.this_eks.cluster_name
+  name = module.eks.cluster_name
 }
 
 data "aws_eks_cluster_auth" "this" {
-  name = module.this_eks.cluster_name
+  name = module.eks.cluster_name
 }
 
 provider "kubernetes" {
