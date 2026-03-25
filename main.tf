@@ -15,4 +15,6 @@ module "iam" {
   source       = "./modules/iam"
   cluster_name = var.cluster_name
   cluster_arn  = module.eks.cluster_arn
+
+  depends_on = [module.eks]
 }
