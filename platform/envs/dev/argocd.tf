@@ -3,29 +3,13 @@ data "terraform_remote_state" "eks" {
   backend = "s3"
   config = {
     bucket = "cloudex-terraform-state-bucket"
-    key    = "eks/dev/terraform.tfstate"  # must match your EKS statefile
+    key    = "dev/terraform.tfstate"  # must match your EKS statefile
     region = "ap-southeast-1"
   }
 }
 
 provider "aws" {
   region = "ap-southeast-1"
-}
-
-# EKS cluster data
-locals {
-  cluster_name = try(
-    data.terraform_remote_state.eks.outputs.cluster_name,
-    data.terraform_remote_state.eks.outputs.eks_cluster_name
-  )
-}
-
-data "aws_eks_cluster" "eks" {
-  name = local.cluster_name
-}
-
-data "aws_eks_cluster_auth" "eks" {
-  name = local.cluster_name
 }
 
 # Kubernetes provider
