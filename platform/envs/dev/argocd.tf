@@ -3,8 +3,9 @@ data "terraform_remote_state" "eks" {
   backend = "s3"
   config = {
     bucket = "cloudex-terraform-state-bucket"
-    key    = "dev/terraform.tfstate"  # must match your EKS statefile
+    key    = "eks/dev/terraform.tfstate"  # must match your EKS statefile
     region = "ap-southeast-1"
+    workspace = "dev"
   }
 }
 
