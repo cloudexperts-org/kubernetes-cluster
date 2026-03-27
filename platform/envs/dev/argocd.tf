@@ -19,9 +19,8 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.eks.token
 }
 
-# Helm provider referencing the Kubernetes provider
 provider "helm" {
-  kubernetes = kubernetes.eks
+  # no nested kubernetes block needed
 }
 
 # Helm release
