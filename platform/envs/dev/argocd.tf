@@ -1,6 +1,6 @@
 # Kubernetes provider using existing kubeconfig
 provider "kubernetes" {
-  config_path = "~/.kube/config"
+  config_path = "/tmp/kubeconfig"
 }
 
 # Helm provider will automatically use the Kubernetes provider
