@@ -51,10 +51,9 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Terraform Init
-        run: |
-          terraform init infra/envs/dev/
+        run: terraform init infra/envs/dev/
 
       - name: Terraform Apply
-        run: run: terraform apply -auto-approve infra/envs/dev/
+        run: terraform apply -auto-approve infra/envs/dev/
         env:
           KUBECONFIG: $HOME/.kube/config
