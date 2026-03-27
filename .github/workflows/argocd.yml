@@ -45,8 +45,13 @@ jobs:
           mkdir -p $HOME/.kube
           aws eks update-kubeconfig --name my-eks-cluster --region ap-southeast-1 --kubeconfig $HOME/.kube/config
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.7
+
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -upgrade -reconfigure
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
