@@ -1,10 +1,21 @@
+data "terraform_remote_state" "eks" {
+  backend = "s3"
+
+  config = {
+    bucket = "cloudex-terraform-state-bucket"
+    key    = "eks/cluster/terraform.tfstate"
+    region = "ap-southeast-1"
+  }
+}
+
 data "aws_eks_cluster" "this" {
-  name = module.eks.cluster_name
+  name = data.terraform_remote_state.eks.outputs.cluster_name
 }
 
 data "aws_eks_cluster_auth" "this" {
-  name = module.eks.cluster_name
+  name = data.terraform_remote_state.eks.outputs.cluster_name
 }
+
 
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.this.endpoint
@@ -39,5 +50,4 @@ resource "kubernetes_config_map" "aws_auth" {
     ])
   }
 
-  depends_on = [module.eks]
 }
