@@ -13,28 +13,24 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-locals {
-  cluster_name = data.terraform_remote_state.eks.outputs.cluster_name
-}
-
 data "aws_eks_cluster" "eks" {
-  name = local.cluster_name
+  name = data.terraform_remote_state.eks.outputs.cluster_name
 }
 
 data "aws_eks_cluster_auth" "eks" {
-  name = local.cluster_name
+  name = data.aws_eks_cluster.eks.outputs.cluster_name
 }
 
 # Default Helm provider (for general use)
 provider "kubernetes" {
+  alias                  = "eks"
   host                   = data.aws_eks_cluster.eks.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.eks.certificate_authority[0].data)
   token                  = data.aws_eks_cluster_auth.eks.token
 }
 
-# Alternative Helm provider (for ArgoCD, for example)
 provider "helm" {
-  kubernetes = kubernetes
+  kubernetes = kubernetes.eks
 }
 
 resource "helm_release" "argocd" {
